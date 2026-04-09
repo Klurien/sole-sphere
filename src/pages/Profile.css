@@ -1,0 +1,157 @@
+/* ========= BAZAAR MOTORS - PROFILE - LUXURY EDITION ========= */
+
+.profile-page {
+    padding-top: 140px;
+    padding-bottom: 100px;
+    background: var(--bg-black);
+    color: #FFF;
+}
+
+.profile-layout {
+    display: flex;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.profile-sidebar {
+    width: 300px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    padding: 40px;
+    height: fit-content;
+}
+
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    background: var(--primary);
+    color: #000;
+    font-size: 2rem;
+    font-weight: 900;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 24px;
+}
+
+.profile-role {
+    font-size: 0.7rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    font-weight: 800;
+}
+
+.profile-nav {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.profile-nav button {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 16px;
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    text-align: left;
+    transition: var(--transition);
+}
+
+.profile-nav button:hover,
+.profile-nav button.active {
+    color: #FFF;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.profile-nav button.logout {
+    margin-top: 32px;
+    color: #ff5252;
+}
+
+.profile-content {
+    flex: 1;
+}
+
+.order-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    padding: 32px;
+    margin-bottom: 32px;
+}
+
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 24px;
+    border-bottom: 1px solid var(--border-dim);
+    margin-bottom: 24px;
+}
+
+.order-id {
+    font-family: 'Outfit';
+    font-weight: 800;
+    font-size: 1.1rem;
+}
+
+.order-status {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 900;
+    padding: 6px 16px;
+    background: #FFF;
+    color: #000;
+}
+
+.order-footer strong {
+    font-size: 1.5rem;
+    color: var(--primary);
+    font-weight: 900;
+}
+
+@media (max-width: 992px) {
+    .profile-page {
+        padding-top: 100px;
+        padding-bottom: 60px;
+    }
+
+    .profile-layout {
+        flex-direction: column;
+        gap: 40px;
+        padding: 0 20px;
+    }
+
+    .profile-sidebar {
+        width: 100%;
+        padding: 30px;
+    }
+
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .profile-nav {
+        margin-top: 32px;
+    }
+
+    .order-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+
+    .order-status {
+        width: fit-content;
+    }
+}

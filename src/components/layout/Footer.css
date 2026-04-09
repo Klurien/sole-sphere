@@ -1,0 +1,181 @@
+/* ========= BAZAAR MOTORS - FOOTER V3 ========= */
+
+.footer-v3 {
+    background: var(--bg-dark-1);
+    border-top: 1px solid var(--border);
+    padding-top: 100px;
+    color: white;
+}
+
+.footer-v3-top {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
+    gap: 80px;
+    margin-bottom: 80px;
+}
+
+.brand-col .v3-logo {
+    margin-bottom: 32px;
+}
+
+.f-v3-description {
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+}
+
+.f-v3-social {
+    display: flex;
+    gap: 16px;
+}
+
+.social-link-v3 {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--bg-dark-2);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+.social-link-v3:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateY(-4px);
+}
+
+.f-v3-heading {
+    font-size: 0.9rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 32px;
+    color: white;
+}
+
+.f-v3-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.f-v3-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.f-v3-links a:hover {
+    color: white;
+    padding-left: 8px;
+}
+
+.f-v3-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.contact-item-v3 {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+}
+
+.icon-orange {
+    color: var(--primary);
+    margin-top: 4px;
+}
+
+.contact-text span {
+    display: block;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.contact-text p {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: white;
+}
+
+.footer-v3-bottom {
+    background: var(--bg-dark-0);
+    padding: 32px 0;
+    border-top: 1px solid var(--border);
+}
+
+.footer-v3-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.f-v3-legal {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+}
+
+.f-v3-legal a {
+    color: inherit;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.f-v3-legal a:hover {
+    color: white;
+}
+
+.f-v3-dot {
+    width: 4px;
+    height: 4px;
+    background: var(--border);
+    border-radius: 50%;
+}
+
+@media (max-width: 1024px) {
+    .footer-v3-top {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+@media (max-width: 768px) {
+    .footer-v3 {
+        padding-top: 60px;
+    }
+
+    .footer-v3-top {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .footer-v3-inner {
+        flex-direction: column;
+        gap: 24px;
+        text-align: center;
+    }
+
+    .f-v3-legal {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .f-v3-dot {
+        display: none;
+    }
+}

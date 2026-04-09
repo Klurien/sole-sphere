@@ -1,0 +1,125 @@
+/* ========= BAZAAR MOTORS - AUTH - LUXURY EDITION ========= */
+
+.login-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 120px 20px;
+    background: var(--bg-black);
+}
+
+.login-card {
+    width: 100%;
+    max-width: 480px;
+    padding: 80px 60px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+}
+
+.login-card h2 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    margin-bottom: 12px;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.login-card p {
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.error-message {
+    background: rgba(255, 50, 50, 0.1);
+    color: #ff5252;
+    padding: 16px;
+    margin-bottom: 32px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-left: 4px solid #ff5252;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.form-group {
+    margin-bottom: 32px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 800;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 18px 24px;
+    background: var(--bg-black);
+    border: 1px solid var(--border-dim);
+    outline: none;
+    font-size: 1rem;
+    color: #FFF;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.form-group input:focus {
+    border-color: #FFF;
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-full {
+    width: 100%;
+    margin-top: 24px;
+    padding: 20px;
+}
+
+.login-footer {
+    margin-top: 48px;
+    text-align: center;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.login-footer a {
+    color: #FFF;
+    font-weight: 800;
+    margin-left: 8px;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+
+.login-footer a:hover {
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .login-page {
+        padding: 100px 20px;
+    }
+
+    .login-card {
+        padding: 40px 30px;
+    }
+
+    .login-card h2 {
+        font-size: 2rem;
+    }
+
+    .login-card p {
+        margin-bottom: 32px;
+    }
+}

@@ -1,0 +1,162 @@
+/* ========= BAZAAR MOTORS - CART - LUXURY EDITION ========= */
+
+.cart-page {
+    padding-top: 140px;
+    padding-bottom: 100px;
+    background: var(--bg-black);
+    color: #FFF;
+}
+
+.cart-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.cart-items-panel {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.premium-cart-item {
+    display: flex;
+    gap: 32px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    padding: 32px;
+    align-items: center;
+}
+
+.item-image {
+    width: 160px;
+    height: 100px;
+    background: #000;
+}
+
+.item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.item-details h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.item-cat {
+    font-size: 0.65rem;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-weight: 800;
+}
+
+.item-remove-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.item-remove-btn:hover {
+    color: #ff5252;
+}
+
+.item-price-side {
+    text-align: right;
+}
+
+.price-val {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--primary);
+    font-family: 'Outfit';
+}
+
+/* Summary Card */
+.checkout-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-dim);
+    padding: 48px;
+    position: sticky;
+    top: 140px;
+}
+
+.summary-line {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.summary-line.total {
+    border-top: 1px solid var(--border-dim);
+    padding-top: 24px;
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: #FFF;
+}
+
+.checkout-trust {
+    margin-top: 40px;
+    display: grid;
+    gap: 16px;
+}
+
+.trust-bit {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+@media (max-width: 1024px) {
+    .cart-page {
+        padding-top: 100px;
+    }
+
+    .cart-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .checkout-card {
+        position: static;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .premium-cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .item-image {
+        width: 100%;
+        height: auto;
+        aspect-ratio: 16/10;
+    }
+
+    .item-price-side {
+        width: 100%;
+        text-align: left;
+        border-top: 1px solid var(--border-dim);
+        padding-top: 16px;
+    }
+}
