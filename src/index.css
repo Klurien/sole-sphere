@@ -9,47 +9,38 @@ html, body, #root, .app {
 * { outline: none !important; }
 
 :root {
-  /* Brand - Electric Sneaker Aesthetic */
-  --primary:        #FF4D00; /* Vivid Orange-Red */
-  --primary-raw:    255, 77, 0;
-  --primary-dim:    rgba(255, 77, 0, 0.12);
-  --primary-glow:   0 0 40px rgba(255, 77, 0, 0.2);
-  --primary-glow-lg: 0 0 80px rgba(255, 77, 0, 0.15);
-
-  /* Surfaces - Obsidian & Carbon */
-  --bg-black:    #05070A;
-  --bg-dark:     #0C0F16;
-  --bg-surface:  rgba(18, 22, 30, 0.6);
-  --bg-card:     #12161E;
-  --bg-hover:    rgba(30, 36, 48, 0.8);
-  --bg-glass:    rgba(12, 15, 22, 0.7);
-
+  /* Brand - Premium Kicks Aesthetic */
+  --primary:        #000000; /* Deep Black */
+  --accent:         #FF0000; /* Alert Red */
+  --sale:           #FF8A00; /* Sale Orange */
+  --success:        #00BA29; /* Fresh Green */
+  
+  /* Surfaces */
+  --bg-white:    #FFFFFF;
+  --bg-light:    #F5F5F7;
+  --bg-dark:     #000000;
+  --bg-surface:  #FFFFFF;
+  --bg-card:     #F9F9F9;
+  
   /* Text */
-  --text-primary:   #FFFFFF;
-  --text-secondary: #9DA4B0;
-  --text-muted:     #4F5666;
+  --text-primary:   #000000;
+  --text-secondary: #666666;
+  --text-muted:     #999999;
+  --text-inverse:   #FFFFFF;
 
   /* Borders */
-  --border-dim:  rgba(255, 255, 255, 0.08);
-  --border-mid:  rgba(255, 255, 255, 0.15);
-  --border-glow: rgba(255, 77, 0, 0.3);
+  --border-light: #EEEEEE;
+  --border-mid:   #DDDDDD;
+  --border-dark:  #000000;
 
-  /* Radii - Modern & Sleek */
-  --radius-xs: 4px;
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 20px;
-  --radius-xl: 40px;
-
-  /* Motion */
-  --ease-out:  cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-in:   cubic-bezier(0.7, 0, 0.84, 0);
-  --transition: all 0.5s var(--ease-out);
-  --transition-fast: all 0.2s var(--ease-out);
+  /* Radii - Industrial & Sharp */
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 8px;
 
   /* Typography */
-  --font-display: 'Outfit', sans-serif;
-  --font-body:    'Inter', sans-serif;
+  --font-display: 'Inter', system-ui, sans-serif;
+  --font-body:    'Inter', system-ui, sans-serif;
 }
 
 /* ─── BASE ─────────────────────────────────────────────────────── */
@@ -59,11 +50,10 @@ html, body {
   max-width: 100%;
   overflow-x: hidden;
   font-family: var(--font-body);
-  background-color: var(--bg-black);
+  background-color: var(--bg-white);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.5;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, .font-display {

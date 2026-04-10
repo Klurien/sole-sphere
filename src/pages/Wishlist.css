@@ -1,0 +1,59 @@
+/* ─── KICKSKENYA WISHLIST PAGE ───────────────────────────────── */
+.wishlist-page-ks {
+    background: #fff;
+    min-height: 100vh;
+    padding-top: 120px;
+    padding-bottom: 100px;
+}
+
+.wishlist-header-ks {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.wishlist-header-ks h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: 15px;
+}
+
+.wishlist-header-ks p {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.wishlist-empty-ks {
+    text-align: center;
+    padding: 100px 0;
+}
+
+.wishlist-empty-ks h2 {
+    font-size: 2rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.wishlist-empty-ks p {
+    margin-bottom: 40px;
+    font-weight: 700;
+    color: var(--text-muted);
+}
+
+.wishlist-grid-ks {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 40px 20px;
+}
+
+@media (max-width: 1024px) {
+    .wishlist-grid-ks { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+    .wishlist-grid-ks { grid-template-columns: 1fr; }
+}

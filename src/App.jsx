@@ -13,9 +13,9 @@ import ProductDetail from './pages/ProductDetail';
 import Checkout from './pages/Checkout';
 import Register from './pages/Register';
 import Profile from './pages/Profile';
+import Wishlist from './pages/Wishlist';
+import { WishlistProvider } from './context/WishlistContext';
 import { Analytics } from '@vercel/analytics/react';
-import { BRAND } from './brandConfig';
-import Contact from './pages/Contact';
 
 function App() {
   const [whatsappNumber, setWhatsappNumber] = React.useState(BRAND.whatsapp);
@@ -32,9 +32,10 @@ function App() {
 
   return (
     <AuthProvider>
-      <CartProvider>
-        <Router>
-          <div className="app">
+      <WishlistProvider>
+        <CartProvider>
+          <Router>
+            <div className="app">
             <Navbar />
             <main>
               <Routes>
@@ -47,7 +48,7 @@ function App() {
                 <Route path="/products" element={<Products />} />
                 <Route path="/products/:id" element={<ProductDetail />} />
                 <Route path="/checkout" element={<Checkout />} />
-                <Route path="/contact" element={<Contact />} />
+                <Route path="/wishlist" element={<Wishlist />} />
                 {/* Category shortcut routes */}
                 <Route path="/category/:cat" element={<Products />} />
               </Routes>
@@ -60,7 +61,8 @@ function App() {
           </div>
           <Analytics />
         </Router>
-      </CartProvider>
+        </CartProvider>
+      </WishlistProvider>
     </AuthProvider>
   );
 }

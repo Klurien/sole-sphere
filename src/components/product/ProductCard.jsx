@@ -1,68 +1,56 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { MessageCircle, Star } from 'lucide-react';
-import { BRAND } from '../../brandConfig';
+import { Heart } from 'lucide-react';
+import { useWishlist } from '../../context/WishlistContext';
 import './ProductCard.css';
 
-const ProductCard = ({ product, compact = false }) => {
-    const handleWhatsApp = (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        const message = `Hi Sole Sphere, I am interested in the ${product.name} (${product.brand}) priced at KSh ${parseFloat(product.price).toLocaleString()}. Is this pair still available?`;
-        window.open(`https://wa.me/${BRAND.whatsapp}?text=${encodeURIComponent(message)}`, '_blank');
-    };
-
+const ProductCard = ({ product }) => {
+    const { toggleWishlist, isInWishlist } = useWishlist();
+    
     const imageUrl = product.image_url
         ? (product.image_url.startsWith('http') ? product.image_url : `${import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "")}${product.image_url}`)
         : 'https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=400&auto=format&fit=crop';
 
+    const isUrgent = product.stock > 0 && product.stock <= 5;
+    const stockPercent = Math.min((product.stock / 20) * 100, 100);
+
     return (
-        <div className={`sneaker-card-v3 animate-reveal ${compact ? 'v3-compact' : ''}`}>
-            <Link to={`/products/${product.id}`} className="v3-card-link">
-                <div className="v3-card-media">
+        <div className="sneaker-card-ks animate-reveal">
+            <div className="card-media-ks">
+                <Link to={`/products/${product.id}`}>
                     <img src={imageUrl} alt={product.name} />
-                    <div className="v3-overlay-grad"></div>
-                    <div className="v3-card-badges">
-                        {product.condition && <span className="v3-badge">{product.condition}</span>}
-                        {product.category && <span className="v3-badge year">{product.category}</span>}
-                    </div>
-                </div>
+                </Link>
+                
+                {product.price > 10000 && <span className="badge-ks hot">TOP PICKS</span>}
+                {product.status === 'sale' && <span className="badge-ks sale">SALE</span>}
+                
+                <button 
+                    className={`wishlist-btn-ks ${isInWishlist(product.id) ? 'active' : ''}`}
+                    onClick={() => toggleWishlist(product)}
+                >
+                    <Heart size={18} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
+                </button>
+            </div>
 
-                <div className="v3-card-info">
-                    <div className="v3-card-header">
-                        <span className="v3-brand">{product.brand || 'JORDAN'}</span>
-                        <h3 className="v3-title">{product.name}</h3>
-                    </div>
-
-                    <div className="v3-specs-grid">
-                        <div className="v3-spec">
-                            <span className="v3-label">Size</span>
-                            <span className="v3-val">{product.size || 'US 7-13'}</span>
+            <Link to={`/products/${product.id}`} className="card-info-ks">
+                <span className="category-ks">{product.brand} | {product.category}</span>
+                <h3 className="name-ks">{product.name}</h3>
+                <span className="price-ks">KSh {parseFloat(product.price).toLocaleString()}</span>
+                
+                {isUrgent && (
+                    <div className="stock-meter-ks">
+                        <div className="stock-label-ks">
+                            <span>Leaving Soon</span>
+                            <span>{product.stock} Left</span>
                         </div>
-                        <div className="v3-spec">
-                            <span className="v3-label">Color</span>
-                            <span className="v3-val">{product.color || 'Multi'}</span>
-                        </div>
-                        <div className="v3-spec">
-                            <span className="v3-label">Material</span>
-                            <span className="v3-val">{product.material || 'Leather'}</span>
+                        <div className="stock-bar-ks">
+                            <div className="stock-fill-ks" style={{ width: `${stockPercent}%` }}></div>
                         </div>
                     </div>
-
-                    <div className="v3-card-footer">
-                        <div className="v3-price-wrap">
-                            <span className="v3-price-label">Price</span>
-                            <span className="v3-price">KSh {parseFloat(product.price).toLocaleString()}</span>
-                        </div>
-                        <button className="v3-whatsapp-btn" onClick={handleWhatsApp}>
-                            <MessageCircle size={18} strokeWidth={2.5} />
-                        </button>
-                    </div>
-                </div>
+                )}
             </Link>
         </div>
     );
 };
 
 export default ProductCard;
-
