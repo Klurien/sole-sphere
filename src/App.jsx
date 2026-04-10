@@ -15,7 +15,9 @@ import Register from './pages/Register';
 import Profile from './pages/Profile';
 import Wishlist from './pages/Wishlist';
 import { WishlistProvider } from './context/WishlistContext';
+import { BRAND } from './brandConfig';
 import { Analytics } from '@vercel/analytics/react';
+import { MessageCircle } from 'lucide-react';
 
 function App() {
   const [whatsappNumber, setWhatsappNumber] = React.useState(BRAND.whatsapp);
