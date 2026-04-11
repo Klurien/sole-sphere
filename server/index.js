@@ -15,6 +15,7 @@ import ordersRoutes from './routes/orders.js';
 import sitemapRoutes from './routes/sitemap.js';
 import statsRoutes from './routes/stats.js';
 import categoryRoutes from './routes/categories.js';
+import merchantRoutes from './routes/merchants.js';
 // The db module already starts initDB() internally and its default export waits for it.
 import db from './db/db.js';
 
@@ -63,6 +64,7 @@ app.use('/api/promotions', promotionRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/stats', statsRoutes);
 app.use('/api/categories', categoryRoutes);
+app.use('/api/merchants', merchantRoutes);
 app.use('/', sitemapRoutes); // Mounts /sitemap.xml (will match /api/sitemap.xml under Vercel)
 
 // Global Error Handler

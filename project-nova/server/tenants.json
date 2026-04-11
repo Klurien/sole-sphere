@@ -1,0 +1,74 @@
+[
+  {
+    "id": "nova-kicks",
+    "storeName": "NovaKicks",
+    "template": "sneaker",
+    "theme": "dark",
+    "primaryColor": "#000000",
+    "accentColor": "#D4AF37",
+    "deployedAt": "2026-04-11T14:20:00.000Z",
+    "products": [
+      {
+        "id": "p1",
+        "name": "Nike Air Jordan 1 Retro",
+        "price": "18,500",
+        "brand": "Jordan",
+        "category": "Basketball",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        "description": "Premium leather high-top with gold accents."
+      },
+      {
+        "id": "p2",
+        "name": "Adidas Yeezy Boost 350",
+        "price": "22,000",
+        "brand": "Adidas",
+        "category": "Lifestyle",
+        "image": "https://images.unsplash.com/photo-1525966222134-fcfa99b6ae77",
+        "description": "Comfort meets iconic design."
+      }
+    ],
+    "seoScore": 116,
+    "lastGrind": "2026-04-11T15:47:51.655Z"
+  },
+  {
+    "id": "premium-kicks",
+    "storeName": "Premium Kicks",
+    "template": "sneaker",
+    "theme": "dark",
+    "primaryColor": "#000000",
+    "accentColor": "#FFD700",
+    "deployedAt": "2026-04-11T15:49:46.659Z",
+    "products": [
+      {
+        "name": "a Black Leather Boots",
+        "price": "12,000",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        "brand": "Vuka Premium",
+        "category": "Streetwear",
+        "description": "AI-generated premium product description.",
+        "id": "p-1775923451922",
+        "createdAt": "2026-04-11T16:04:11.922Z"
+      },
+      {
+        "name": "a Red Sport Shoe",
+        "price": "5,000",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        "brand": "Vuka Premium",
+        "category": "Streetwear",
+        "description": "AI-generated premium product description.",
+        "id": "p-1775923811091",
+        "createdAt": "2026-04-11T16:10:11.091Z"
+      },
+      {
+        "name": "an Exclusive White Jordan",
+        "price": "25,000",
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff",
+        "brand": "Vuka Premium",
+        "category": "Streetwear",
+        "description": "AI-generated premium product description.",
+        "id": "p-1775924372178",
+        "createdAt": "2026-04-11T16:19:32.179Z"
+      }
+    ]
+  }
+]

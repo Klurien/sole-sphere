@@ -33,7 +33,10 @@ const ProductDetail = () => {
         window.scrollTo(0, 0);
         const fetchProductData = async () => {
             try {
-                const res = await fetch(`${API}/api/products/${id}`);
+                const targetApiBase = window.VUKA_API_BASE || API;
+                const tenantQuery = window.VUKA_TENANT_ID ? `?tenantId=${window.VUKA_TENANT_ID}` : '';
+                
+                const res = await fetch(`${targetApiBase}/api/products/${id}${tenantQuery}`);
                 if (!res.ok) throw new Error('Product not found');
                 const data = await res.json();
                 setProduct(data);
@@ -44,8 +47,12 @@ const ProductDetail = () => {
                     category: data.category,
                     sort: 'newest'
                 });
-                const allRes = await fetch(`${API}/api/products?${params.toString()}`);
+                if (window.VUKA_TENANT_ID) {
+                    params.append('tenantId', window.VUKA_TENANT_ID);
+                }
+                const allRes = await fetch(`${targetApiBase}/api/products?${params.toString()}`);
                 const allData = await allRes.json();
+
                 setRelatedProducts(allData.products.filter(p => p.id !== data.id));
 
                 setLoading(false);
@@ -82,28 +89,17 @@ const ProductDetail = () => {
 
             <div className="container">
                 <div className="detail-hero-v3">
-                    <div className="detail-header-v3">
-                        <div>
-                            <span className="v3-sub">{product.brand}</span>
-                            <h1>{product.name}</h1>
-                        </div>
-                        <div className="v3-price-impact">
-                            <span className="impact-label">PRICE</span>
-                            <div className="impact-val">KSh {parseFloat(product.price).toLocaleString()}</div>
-                        </div>
-                    </div>
-
-                    <div className="detail-media-layout-v3">
-                        <div className="gallery-col">
+                    <div className="detail-media-layout-v3 cinematic-layout">
+                        <div className="gallery-col cinematic-gallery">
                             <div className="main-gallery-v3">
                                 <img src={images[selectedImageIdx]} alt={product.name} />
                                 {images.length > 1 && (
                                     <div className="gallery-nav-v3">
-                                        <button onClick={() => setSelectedImageIdx(i => (i - 1 + images.length) % images.length)}>
-                                            <ChevronLeft size={20} />
+                                        <button className="nav-btn-ks cinematic-nav" onClick={() => setSelectedImageIdx(i => (i - 1 + images.length) % images.length)}>
+                                            <ChevronLeft size={24} />
                                         </button>
-                                        <button onClick={() => setSelectedImageIdx(i => (i + 1) % images.length)}>
-                                            <ChevronRight size={20} />
+                                        <button className="nav-btn-ks cinematic-nav" onClick={() => setSelectedImageIdx(i => (i + 1) % images.length)}>
+                                            <ChevronRight size={24} />
                                         </button>
                                     </div>
                                 )}
@@ -112,7 +108,7 @@ const ProductDetail = () => {
                                 {images.map((img, idx) => (
                                     <button
                                         key={idx}
-                                        className={selectedImageIdx === idx ? 'active' : ''}
+                                        className={selectedImageIdx === idx ? 'active thumb-ks' : 'thumb-ks'}
                                         onClick={() => setSelectedImageIdx(idx)}
                                     >
                                         <img src={img} alt="" />
@@ -121,12 +117,22 @@ const ProductDetail = () => {
                             </div>
                         </div>
 
-                        <div className="specs-sidebar-v3">
+                        <div className="specs-sidebar-v3 cinematic-sidebar">
+                            <div className="detail-header-v3">
+                                <div className="header-text-ks">
+                                    <span className="v3-sub">{product.brand} · {product.category}</span>
+                                    <h1>{product.name}</h1>
+                                </div>
+                                <div className="v3-price-impact">
+                                    <div className="impact-val">KSh {parseFloat(product.price).toLocaleString()}</div>
+                                </div>
+                            </div>
+
                             {isUrgent && (
                                 <div className="urgency-card-ks">
                                     <div className="urgency-label-ks">
-                                        <span>INVENTORY CRITICAL</span>
-                                        <span>ONLY {product.stock} PAIRS LEFT</span>
+                                        <span>Inventory Critical</span>
+                                        <span>Only {product.stock} Pairs Left</span>
                                     </div>
                                     <div className="urgency-bar-ks">
                                         <div className="urgency-fill-ks" style={{ width: `${stockPercent}%` }}></div>
@@ -136,14 +142,18 @@ const ProductDetail = () => {
 
                             <div className="logistics-grid-ks">
                                 <div className="logistics-tile-ks">
-                                    <Truck size={20} />
-                                    <span>Shipping</span>
-                                    <span>2-3 Days</span>
+                                    <div className="tile-icon-ks"><Truck size={20} /></div>
+                                    <div className="tile-text-ks">
+                                        <span>Shipping</span>
+                                        <span>2-3 Days Delivery</span>
+                                    </div>
                                 </div>
                                 <div className="logistics-tile-ks">
-                                    <Package size={20} />
-                                    <span>Pickup</span>
-                                    <span>Ready in 24h</span>
+                                    <div className="tile-icon-ks"><Package size={20} /></div>
+                                    <div className="tile-text-ks">
+                                        <span>Pickup</span>
+                                        <span>Available in 24h</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -153,29 +163,40 @@ const ProductDetail = () => {
                                     <span>{product.size || 'US 7-13'}</span>
                                 </div>
                                 <div className="spec-item-ks">
-                                    <span>Category</span>
-                                    <span>{product.category}</span>
-                                </div>
-                                <div className="spec-item-ks">
                                     <span>Condition</span>
-                                    <span>{product.condition || 'New'}</span>
+                                    <span>{product.condition || 'New / Deadstock'}</span>
                                 </div>
                                 <div className="spec-item-ks">
                                     <span>Authenticity</span>
-                                    <span>Verified</span>
+                                    <span>Guaranteed</span>
+                                </div>
+                                <div className="spec-item-ks">
+                                    <span>ID</span>
+                                    <span>#{product.id.toString().padStart(4, '0')}</span>
                                 </div>
                             </div>
 
                             <div className="action-stack-v3">
-                                <button className="primary-btn" onClick={handleWhatsApp}>
-                                    <Zap size={18} /> ORDER VIA WHATSAPP
+                                {/* Vuka Ghost: M-Pesa Integration */}
+                                {window.VUKA_TENANT_ID && (
+                                    <div className="vuka-mpesa-ready">
+                                        <button className="mpesa-btn" onClick={() => alert('Vuka Magic: M-Pesa prompt sent to your phone!')}>
+                                            <span>Proceed with M-Pesa</span>
+                                            <span className="mpesa-logo">M</span>
+                                        </button>
+                                        <p className="vuka-badge">Secured by Vuka Stealth</p>
+                                    </div>
+                                )}
+
+                                <button className="primary-btn checkout-btn-ks" onClick={handleWhatsApp}>
+                                    <Zap size={18} /> Order via WhatsApp
                                 </button>
                                 <button 
                                     className={`wishlist-detail-btn ${isInWishlist(product.id) ? 'active' : ''}`}
                                     onClick={() => toggleWishlist(product)}
                                 >
                                     <Heart size={18} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
-                                    {isInWishlist(product.id) ? 'SAVED TO WISHLIST' : 'SAVE TO WISHLIST'}
+                                    {isInWishlist(product.id) ? 'Saved' : 'Save for Later'}
                                 </button>
                             </div>
                         </div>

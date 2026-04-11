@@ -23,6 +23,16 @@ function App() {
   const [whatsappNumber, setWhatsappNumber] = React.useState(BRAND.whatsapp);
 
   React.useEffect(() => {
+    // 1. Dynamic Skinning from Vuka
+    const configRaw = localStorage.getItem('VUKA_CONFIG');
+    if (configRaw) {
+      const config = JSON.parse(configRaw);
+      const root = document.documentElement;
+      if (config.accentColor) root.style.setProperty('--accent', config.accentColor);
+      document.title = `${config.storeName} | Official Store`;
+    }
+
+    // 2. Fetch Stats/Config
     const API = import.meta.env.VITE_API_URL || (import.meta.env.PROD ? "" : "");
     fetch(`${API}/api/stats/config`)
       .then(res => res.json())

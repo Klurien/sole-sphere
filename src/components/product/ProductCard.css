@@ -1,145 +1,175 @@
-/* ─── KICKSKENYA PRODUCT CARD ────────────────────────────────── */
+/* ─── SOLE SPHERE PREMIUM CARD V4 ──────────────────────────────── */
 .sneaker-card-ks {
-  background: transparent;
-  width: 100%;
   display: flex;
   flex-direction: column;
   position: relative;
-  transition: transform 0.3s ease;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
 }
 
-.sneaker-card-ks:hover {
-  transform: translateY(-5px);
+.card-main-ks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
 }
 
 .card-media-ks {
   position: relative;
   width: 100%;
   aspect-ratio: 1/1;
-  background: var(--bg-light); /* Consistent light grey */
+  background: #f5f5f7; /* Classic Apple Product Background */
+  border-radius: var(--radius-apple);
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: var(--transition-smooth);
 }
 
 .card-media-ks img {
-  width: 85%;
-  height: auto;
+  width: 75%;
+  height: 75%;
   object-fit: contain;
-  mix-blend-mode: multiply; /* Helps blend white bg images with grey card bg */
-  transition: transform 0.5s ease;
+  mix-blend-mode: multiply;
+  transition: transform 0.8s cubic-bezier(0.2, 1, 0.3, 1);
+  filter: drop-shadow(0 20px 30px rgba(0,0,0,0.15));
+}
+
+.sneaker-card-ks:hover .card-media-ks {
+  background: #ebebeb;
 }
 
 .sneaker-card-ks:hover .card-media-ks img {
-  transform: scale(1.1);
+  transform: scale(1.15) translateY(-5%);
 }
 
 /* ─── BADGES ───────────────────────────────────────────────────── */
 .badge-ks {
   position: absolute;
-  top: 12px;
-  right: 12px;
-  background: var(--accent);
+  top: 20px;
+  left: 20px;
+  background: var(--primary);
   color: #fff;
-  font-size: 0.6rem;
-  font-weight: 800;
-  padding: 4px 8px;
-  text-transform: uppercase;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: var(--radius-pill);
   z-index: 2;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  letter-spacing: -0.01em;
 }
 
-.badge-ks.sale { background: var(--sale); }
-.badge-ks.hot { background: #000; }
+.badge-ks.sale { 
+  background: var(--sale); 
+}
+
+.badge-ks.hot { 
+  background: #000;
+}
 
 /* ─── WISHLIST ────────────────────────────────────────────────── */
 .wishlist-btn-ks {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  background: #fff;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px) saturate(200%);
+  -webkit-backdrop-filter: blur(20px) saturate(200%);
   border: none;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
   cursor: pointer;
-  z-index: 3;
-  transition: transform 0.2s ease;
+  z-index: 10;
+  transition: var(--transition-spring);
 }
 
 .wishlist-btn-ks:hover {
   transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
 
 .wishlist-btn-ks svg {
-  width: 18px;
-  height: 18px;
-  color: #000;
-  transition: fill 0.2s;
+  width: 20px;
+  height: 20px;
+  color: var(--primary);
+  transition: all 0.3s ease;
 }
 
 .wishlist-btn-ks.active svg {
   fill: var(--accent);
   color: var(--accent);
+  transform: scale(1.15);
 }
 
 /* ─── INFO ─────────────────────────────────────────────────────── */
 .card-info-ks {
-  padding: 16px 0;
+  padding: 24px 8px 0;
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
 
 .category-ks {
-  font-size: 0.65rem;
-  font-weight: 800;
-  text-transform: uppercase;
+  font-size: 0.75rem;
+  font-weight: 700;
   color: var(--text-muted);
   letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
 .name-ks {
-  font-size: 0.9rem;
-  font-weight: 700;
-  color: #000;
-  text-transform: uppercase;
-  line-height: 1.2;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+  margin: 4px 0;
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
 .price-ks {
-  font-size: 1rem;
+  font-size: 1.25rem;
   font-weight: 800;
-  color: #000;
-  margin-top: 4px;
+  color: var(--text-primary);
+  margin-top: 8px;
 }
 
 .stock-meter-ks {
-  margin-top: 10px;
+  margin-top: 16px;
 }
 
 .stock-label-ks {
-  font-size: 0.6rem;
+  font-size: 0.75rem;
   font-weight: 700;
   color: var(--accent);
   display: flex;
   justify-content: space-between;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  margin-bottom: 8px;
 }
 
 .stock-bar-ks {
-  height: 3px;
-  background: #eee;
+  height: 6px;
+  background: rgba(255,0,0,0.1);
   width: 100%;
-  position: relative;
+  border-radius: var(--radius-pill);
+  overflow: hidden;
 }
 
 .stock-fill-ks {
   height: 100%;
   background: var(--accent);
-  transition: width 0.5s ease;
+  border-radius: var(--radius-pill);
+  transition: width 1s cubic-bezier(0.4, 0, 0.2, 1);
 }

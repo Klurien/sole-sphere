@@ -35,8 +35,14 @@ const Products = () => {
                 limit: 100 // Load all for now for better UX
             });
 
-            const res = await fetch(`${API}/api/products?${params.toString()}`);
+            const targetApiBase = window.VUKA_API_BASE || API;
+            if (window.VUKA_TENANT_ID) {
+                params.append('tenantId', window.VUKA_TENANT_ID);
+            }
+            const res = await fetch(`${targetApiBase}/api/products?${params.toString()}`);
             const data = await res.json();
+
+
             setProducts(data.products);
             setTotalResults(data.total);
             setLoading(false);
@@ -67,20 +73,23 @@ const Products = () => {
 
             <div className="inventory-header-v3">
                 <div className="container">
-                    <h1>COLLECTION</h1>
-                    <p>Authentic curated drops from the world's most iconic brands.</p>
+                    <span className="v3-sub">Curated Performance</span>
+                    <h1 className="cinematic-title">The Collection</h1>
+                    <p>Discover authentic, hand-picked drops from the world's most iconic sneaker brands and designers.</p>
                 </div>
             </div>
 
             <div className="v3-toolbar-top">
-                <div className="toolbar-info-v3">
-                    <p>{totalResults} ITEMS FOUND</p>
-                </div>
-                <div className="toolbar-actions-v3">
-                    <button className="h-action-btn-ks" onClick={() => setSidebarOpen(true)}>
-                        <Filter size={16} />
-                        <span>Filter & Sort</span>
-                    </button>
+                <div className="container toolbar-inner-ks">
+                    <div className="toolbar-info-v3">
+                        <p>{totalResults} Items Found</p>
+                    </div>
+                    <div className="toolbar-actions-v3">
+                        <button className="h-action-btn-ks" onClick={() => setSidebarOpen(true)}>
+                            <Filter size={16} />
+                            <span>Filter & Sort</span>
+                        </button>
+                    </div>
                 </div>
             </div>
 
@@ -98,9 +107,9 @@ const Products = () => {
                         </div>
                     ) : (
                         <div className="v3-empty-state">
-                            <h3>NO PRODUCTS FOUND</h3>
-                            <p>Try adjusting your search or filters.</p>
-                            <button onClick={clearFilters}>CLEAR ALL FILTERS</button>
+                            <h3>No Products Found</h3>
+                            <p>Try adjusting your search or filters to find what you're looking for.</p>
+                            <button className="primary-btn" onClick={clearFilters}>Clear All Filters</button>
                         </div>
                     )}
                 </div>
@@ -110,7 +119,7 @@ const Products = () => {
             <div className={`drawer-overlay-ks ${sidebarOpen ? 'visible' : ''}`} onClick={() => setSidebarOpen(false)}></div>
             <aside className={`filter-drawer-ks ${sidebarOpen ? 'open' : ''}`}>
                 <div className="drawer-header-ks">
-                    <h2>FILTERS</h2>
+                    <h2>Filter & Sort</h2>
                     <button className="close-drawer-ks" onClick={() => setSidebarOpen(false)}>
                         <X size={24} />
                     </button>
@@ -118,18 +127,18 @@ const Products = () => {
 
                 <div className="drawer-content-ks">
                     <div className="filter-group-ks">
-                        <label>SEARCH</label>
+                        <label>Search</label>
                         <input 
                             type="text" 
                             className="search-input-ks" 
-                            placeholder="Search by name..."
+                            placeholder="Find your next pair..."
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
                     </div>
 
                     <div className="filter-group-ks">
-                        <label>BRAND</label>
+                        <label>Brand</label>
                         <div className="filter-options-ks">
                             {BRANDS.map(brand => (
                                 <button 
@@ -144,7 +153,7 @@ const Products = () => {
                     </div>
 
                     <div className="filter-group-ks">
-                        <label>CATEGORY</label>
+                        <label>Category</label>
                         <div className="filter-options-ks">
                             {CATEGORIES.map(cat => (
                                 <button 
@@ -159,7 +168,7 @@ const Products = () => {
                     </div>
 
                     <button className="v3-reset-btn-ks" onClick={clearFilters}>
-                        RESET ALL FILTERS
+                        Reset All Filters
                     </button>
                 </div>
             </aside>

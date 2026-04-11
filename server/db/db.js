@@ -153,6 +153,37 @@ export const initDB = async () => {
             role VARCHAR(50) DEFAULT 'user',
             created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
         )`,
+    `CREATE TABLE IF NOT EXISTS merchants (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            owner_email VARCHAR(255) NOT NULL,
+            store_name VARCHAR(100) NOT NULL,
+            tenant_id VARCHAR(100) UNIQUE NOT NULL,
+            vercel_url VARCHAR(512),
+            status VARCHAR(50) DEFAULT 'pending',
+            setup_fee_paid BOOLEAN DEFAULT FALSE,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        )`,
+    `CREATE TABLE IF NOT EXISTS transactions (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            merchant_id INT NOT NULL,
+            amount DECIMAL(12,2) NOT NULL,
+            currency VARCHAR(10) DEFAULT 'KES',
+            transaction_type VARCHAR(50) NOT NULL,
+            status VARCHAR(50) DEFAULT 'pending',
+            external_ref VARCHAR(255),
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY (merchant_id) REFERENCES merchants(id)
+        )`,
+    `CREATE TABLE IF NOT EXISTS payouts (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            merchant_id INT NOT NULL,
+            amount DECIMAL(12,2) NOT NULL,
+            payout_method VARCHAR(50) DEFAULT 'M-PESA',
+            recipient_phone VARCHAR(20) NOT NULL,
+            payout_status VARCHAR(50) DEFAULT 'requested',
+            processed_at TIMESTAMP,
+            FOREIGN KEY (merchant_id) REFERENCES merchants(id)
+        )`,
     `CREATE TABLE IF NOT EXISTS categories (
             id INT AUTO_INCREMENT PRIMARY KEY,
             name VARCHAR(100) UNIQUE NOT NULL,

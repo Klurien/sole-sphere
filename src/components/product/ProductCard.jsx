@@ -16,39 +16,43 @@ const ProductCard = ({ product }) => {
 
     return (
         <div className="sneaker-card-ks animate-reveal">
-            <div className="card-media-ks">
-                <Link to={`/products/${product.id}`}>
+            <Link to={`/products/${product.id}`} className="card-main-ks">
+                <div className="card-media-ks">
                     <img src={imageUrl} alt={product.name} />
-                </Link>
-                
-                {product.price > 10000 && <span className="badge-ks hot">TOP PICKS</span>}
-                {product.status === 'sale' && <span className="badge-ks sale">SALE</span>}
-                
-                <button 
-                    className={`wishlist-btn-ks ${isInWishlist(product.id) ? 'active' : ''}`}
-                    onClick={() => toggleWishlist(product)}
-                >
-                    <Heart size={18} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
-                </button>
-            </div>
+                    
+                    {product.price > 10000 && <span className="badge-ks hot">Top Picks</span>}
+                    {product.status === 'sale' && <span className="badge-ks sale">Sale</span>}
+                </div>
 
-            <Link to={`/products/${product.id}`} className="card-info-ks">
-                <span className="category-ks">{product.brand} | {product.category}</span>
-                <h3 className="name-ks">{product.name}</h3>
-                <span className="price-ks">KSh {parseFloat(product.price).toLocaleString()}</span>
-                
-                {isUrgent && (
-                    <div className="stock-meter-ks">
-                        <div className="stock-label-ks">
-                            <span>Leaving Soon</span>
-                            <span>{product.stock} Left</span>
+                <div className="card-info-ks">
+                    <span className="category-ks">{product.brand} · {product.category}</span>
+                    <h3 className="name-ks">{product.name}</h3>
+                    <span className="price-ks">KSh {parseFloat(product.price).toLocaleString()}</span>
+                    
+                    {isUrgent && (
+                        <div className="stock-meter-ks">
+                            <div className="stock-label-ks">
+                                <span>Almost Gone</span>
+                                <span>{product.stock} Left</span>
+                            </div>
+                            <div className="stock-bar-ks">
+                                <div className="stock-fill-ks" style={{ width: `${stockPercent}%` }}></div>
+                            </div>
                         </div>
-                        <div className="stock-bar-ks">
-                            <div className="stock-fill-ks" style={{ width: `${stockPercent}%` }}></div>
-                        </div>
-                    </div>
-                )}
+                    )}
+                </div>
             </Link>
+
+            <button 
+                className={`wishlist-btn-ks ${isInWishlist(product.id) ? 'active' : ''}`}
+                onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    toggleWishlist(product);
+                }}
+            >
+                <Heart size={18} fill={isInWishlist(product.id) ? 'currentColor' : 'none'} />
+            </button>
         </div>
     );
 };
